@@ -120,11 +120,11 @@ class DNAfeature(SeqFeature):
         
         #start->end direction should be 5' to 3' on the top strand.
         if self.location.strand == -1:
-            self._start = self.location.parts[-1].start.position
-            self._end   = self.location.parts[0].end.position
+            self._start = self.location.parts[-1].start
+            self._end   = self.location.parts[0].end
         else:
-            self._start = self.location.parts[0].start.position
-            self._end   = self.location.parts[-1].end.position
+            self._start = self.location.parts[0].start
+            self._end   = self.location.parts[-1].end
         
         self._seq       = None
         self._qkey      = None #ID for features_dict
@@ -182,11 +182,11 @@ class DNAfeature(SeqFeature):
             self.location = CompoundLocation(locations, type=feat.type) 
         
         if self.location.strand == -1:
-            self._start = self.location.parts[-1].start.position
-            self._end   = self.location.parts[0].end.position
+            self._start = self.location.parts[-1].start
+            self._end   = self.location.parts[0].end
         else:
-            self._start = self.location.parts[0].start.position
-            self._end   = self.location.parts[-1].end.position
+            self._start = self.location.parts[0].start
+            self._end   = self.location.parts[-1].end
         
         self._start = Qint(self._start)
         self._end   = Qint(self._end) 
@@ -1802,7 +1802,7 @@ class QUEEN():
             attribute = new_attribute
         if feature_list is None:
             features = list(self.dnafeatures)
-            features.sort(key=lambda x:x.location.parts[0].start.position)
+            features.sort(key=lambda x:x.location.parts[0].start)
         else:
             features = feature_list 
 
@@ -1820,8 +1820,8 @@ class QUEEN():
                 label = "null"
 
             strand = feat.location.strand
-            start  = feat.location.parts[0].start.position
-            end    = feat.location.parts[-1].end.position
+            start  = feat.location.parts[0].start
+            end    = feat.location.parts[-1].end
             seq    = feat.sequence 
             
             if x_based_index == 1:
